@@ -1,9 +1,17 @@
 import os
 import csv
-# Path to collect data from the Resources folder
-budget_data = os.path.join('..', 'Resources', 'budget_data.csv')
 
-# create function to 
+# Path to collect data from the Resources folder
+budget_data = os.path.join('Resources', 'budget_data.csv')
+
+# open file and read, store contents as text
+with open(budget_data, 'r') as text:
+    #store reference to file 
+    print(text)
+
+    #store text in variable called bank
+    bank = text.read()
+
 
 
 

@@ -1,14 +1,17 @@
 import os
 import csv
+
 # Path to collect data from the Resources folder
 election_data = os.path.join('Resources', 'election_data.csv')
-# open file and read, store contents as text
-with open(election_data, 'r') as text:
-    #store reference to file 
-    print(text)
 
-    #store text in variable called bank
-    poll_data = text.read()
+# open file and read, store contents as text
+with open(election_data) as csvfile:
+    #store reference to file 
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+    #store text in variable called poll data
+    poll_data = (csvreader)
+    print(poll_data)
 # The total number of votes cast
 # A complete list of candidates who received votes
 # The percentage of votes each candidate won

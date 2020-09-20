@@ -4,10 +4,11 @@ import csv
 # Path to collect data from the Resources folder
 budget_data = os.path.join('Resources', 'budget_data.csv')
 #declare variable first
-totalPL = []
+totalmonths = 0
+totalPL = 0
 avgpl = 0
 greatestincrease = []
-greatestdecrease= []
+greatestdecrease = []
 
 # open file and read, store contents as text
 with open(budget_data) as csvfile:
@@ -23,16 +24,16 @@ with open(budget_data) as csvfile:
 
     # The total number of months included in the dataset
     # counted number of lines in dataset minuus the header
-    totalmonths= len(list(csvreader))
-    print("Total Months: " + str(totalmonths))
-
-    # The net total amount of "Profit/Losses" over the entire period       
-    for row in csvreader:
-        totalPL = totalPL + (int(row['Profit/Losses]']))
-        
-    print('Total: $' + str(totalPL))
+    # totalmonths= len(list(csvreader)) placing this first read through CSV and stopped. need to treat all like a list and do all before getting out
+    
+    # The net total amount of "Profit/Losses" over the entire period      
     # The average of the changes in "Profit/Losses" over the entire period
-    avgpl = int(totalPL/totalmonths)   
+    for row in csvreader:
+        totalmonths +=1
+        totalPL += (int(row[1]))
+        avgpl = int(totalPL/totalmonths)  
+    print("Total Months: " + str(totalmonths))    
+    print('Total: $' + str(totalPL))
     print("Average Change: $"+ str(avgpl))
     # The greatest increase in profits (date and amount) over the entire period
     #need Max
@@ -50,8 +51,8 @@ with open(PyBank,'w') as file:
     file.write("Total Months: %d\n" % totalmonths)
     file.write("Total Profit/Losses: %d\n" % totalPL)
     file.write("Average Change: %d\n" % avgpl)
-    # file.write("Greatest Increase in Profits: %s(%s)\n" % greatestincrease[0],greatestincrease[1])
-    # file.write("Greatest Decrease in Profits: %s(%s)\n" % greatestdecrease[0],greatestdecrease[1])
+    file.write("Greatest Increase in Profits: %s(%s)\n" % greatestincrease[0],greatestincrease[1])
+    file.write("Greatest Decrease in Profits: %s(%s)\n" % greatestdecrease[0],greatestdecrease[1])
    
 
 

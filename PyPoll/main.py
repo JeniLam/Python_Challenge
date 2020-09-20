@@ -30,8 +30,15 @@ with open(election_data) as csvfile:
 # The winner of the election based on popular vote.
 
 
-print("---------------------------")
-#candidate dictionary or list goes here
-print("---------------------------")
-print("Winner: ")
-print("---------------------------")
+# print("---------------------------")
+# #candidate dictionary or list goes here
+# print("---------------------------")
+# print("Winner: ")
+# print("---------------------------")
+
+PyPoll = output_path = os.path.join("Analysis", "PyPoll.txt")
+
+with open(PyPoll,'w') as file:
+    file.write("Election Results\n")
+    file.write("---------------------\n")
+    file.write("Total Votes: %d\n" % total_votes)

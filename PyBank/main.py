@@ -23,24 +23,25 @@ with open(budget_data) as csvfile:
     print("---------------------------")
 
     # The total number of months included in the dataset
-    # counted number of lines in dataset minuus the header
     # totalmonths= len(list(csvreader)) placing this first read through CSV and stopped. need to treat all like a list and do all before getting out
-    
     # The net total amount of "Profit/Losses" over the entire period      
     # The average of the changes in "Profit/Losses" over the entire period
     for row in csvreader:
+        #counter for number of lines
         totalmonths +=1
         totalPL += (int(row[1]))
-        avgpl = int(totalPL/totalmonths)  
+        avgpl = int(totalPL/totalmonths)
+        # list comprehension?
+        greatestincrease = (float(max(row[0,1])))
+        greatestdecrease = (float(min(row[0,1])))
     print("Total Months: " + str(totalmonths))    
     print('Total: $' + str(totalPL))
     print("Average Change: $"+ str(avgpl))
     # The greatest increase in profits (date and amount) over the entire period
-    #need Max
-    print("Greatest Increase in Profits: ")
+    print("Greatest Increase in Profits: " + greatestincrease)
     # The greatest decrease in losses (date and amount) over the entire period
     #need Min
-    print("Greatest Decrease in Profits: ")
+    print("Greatest Decrease in Profits: "+ greatestdecrease)
 
 #write above to text file
 PyBank = output_path = os.path.join("analysis", "PyBank.txt")

@@ -4,10 +4,13 @@ import csv
 # Path to collect data from the Resources folder
 election_data = os.path.join('Resources', 'election_data.csv')
 
+
 # open file and read, store contents as text
 with open(election_data) as csvfile:
     #store reference to file 
     csvreader = csv.reader(csvfile, delimiter=',')
+     # skip the header row
+    header = next(csvreader)
 
     #store text in variable called poll data
     poll_data = (csvreader)

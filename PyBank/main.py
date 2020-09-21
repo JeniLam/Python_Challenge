@@ -30,20 +30,22 @@ with open(budget_data) as csvfile:
     for row in csvreader:
         # turn date and pl column into list
         date.append(row[0])
-        profitloss.append(row[1])
-        # zip appended lists together to create tuple to perform max/min features on
-        # research on these sites:https://stackoverflow.com/questions/7313157/python-create-list-of-tuples-from-lists/7313188
-        # https://www.tutorialspoint.com/python/tuple_max.htm#:~:text=Python%20tuple%20method%20max%20%28%29%20returns%20the,elements%20from%20the%20tuple%20with%20maximum%20value.    
-        ziplist = list(zip(date,profitloss))
+        profitloss.append(float(row[1]))
+        
         #counter for number of lines
         totalmonths += 1
         # how to sum csv column in python https://stackoverflow.com/questions/13517080/sum-a-csv-column-in-python
         totalPL += (int(row[1]))
     #got help from Wei on this equation below
     avgpl = (int(profitloss[0])- int(profitloss[85]))/85
+    # zip appended lists together to create tuple to perform max/min features on
+    # research on these sites:https://stackoverflow.com/questions/7313157/python-create-list-of-tuples-from-lists/7313188
+    # https://www.tutorialspoint.com/python/tuple_max.htm#:~:text=Python%20tuple%20method%20max%20%28%29%20returns%20the,elements%20from%20the%20tuple%20with%20maximum%20value.    
+    ziplist = list(zip(date,profitloss))
     # print(ziplist) not producing correct date/value??
-    greatestincrease = max(ziplist)
-    greatestdecrease = min(ziplist)
+    # https://stackoverflow.com/questions/13039192/max-second-element-in-tuples-python
+    greatestincrease = max(ziplist, key =lambda x:x[1])
+    greatestdecrease = min(ziplist,key =lambda x:x[1])
        
     print("Total Months: " + str(totalmonths))    
     print('Total Net Profit/Losses: $' + str(totalPL))
@@ -57,12 +59,11 @@ PyBank = output_path = os.path.join("analysis", "PyBank.txt")
 with open(PyBank,'w') as file:
     file.write("Financial Analysis\n")
     file.write("---------------------\n")
-    file.write("Total Months: %d\n" % totalmonths)
-    file.write("Total Net Profit/Losses: $ %d\n" % totalPL)
-    file.write("Average Change: %d\n" % avgpl)
-    file.write("Greatest Increase in Profits:  %s ($%d)\n" % greatestincrease[0], greatestincrease[1])
-    file.write("Greatest Decrease in Profits:  %s ($%d)\n" % greatestdecrease[0], greatestdecrease[1])
-   
+    file.write(f"Total Months:  {totalmonths}\n")
+    file.write(f"Total Net Profit/Losses: $  {totalPL}\n")
+    file.write(f"Average Change:  {avgpl}\n")
+    file.write(f"Greatest Increase in Profits:   {greatestincrease}\n")
+    file.write(f"Greatest Decrease in Profits:   {greatestdecrease}")
 
 
 

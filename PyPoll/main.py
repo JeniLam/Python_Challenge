@@ -6,8 +6,7 @@ election_data = os.path.join('Resources', 'election_data.csv')
 
 #define function for percentages and accept candidate_data as sole parameter
 # Lists to store data to then append
-candidates = []
-candidate_name = []
+candidates = {}
 totalvotes = 0
 winner = 0
 # open file and read, store contents as text
@@ -21,8 +20,16 @@ with open(election_data) as csvfile:
     # The total number of votes cast
     # counted number of lines in dataset minuus the header
     for row in csvreader:
+        name = row[2]
+        # https://www.w3schools.com/python/python_dictionaries.asp
+        if name in candidates:
+            candidates[name] = candidates[name] +1
+        else:
+            candidates[name] = 1
+
         totalvotes +=1
     #Begin print output
+    print(candidates)
     print("Election Results")
     print("---------------------------")
     print("Total Votes: " + str(totalvotes))

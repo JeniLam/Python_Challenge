@@ -4,12 +4,20 @@ import csv
 # Path to collect data from the Resources folder
 election_data = os.path.join('Resources', 'election_data.csv')
 
-totalvotes = 0
-candidates = []
-percentrcvd = 0
-votes_per_candidate = 0
-winner = 0
+#Begin print output
+print("Election Results")
+print("---------------------------")
+#define function for percentages and accept candidate_data as sole parameter
 
+def percentages(candidate_data):
+    #delare variables in candidate_data
+    votes = int(candidate_data[0])
+    candidates = str(candidate_data[2])
+   
+    
+    
+winner = 0
+totalvotes = 0
 # open file and read, store contents as text
 with open(election_data) as csvfile:
     #store reference to file 
@@ -17,10 +25,6 @@ with open(election_data) as csvfile:
      # skip the header row
     header = next(csvreader)
     print(csvreader)
-
-    #Begin output
-    print("Election Results")
-    print("---------------------------")
 
     # The total number of votes cast
     # counted number of lines in dataset minuus the header

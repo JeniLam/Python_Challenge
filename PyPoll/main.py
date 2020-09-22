@@ -36,12 +36,12 @@ with open(election_data) as csvfile:
     print("Total Votes: " + str(totalvotes))
     print("---------------------------")
 
-    # loop through dictionary to gather candidate and vote information. Items allows me to return a list in tuple pairs, use formula within iteration to get percentage. https://tutorialdeep.com/knowhow/loop-through-dictionary-elements-python/#Print_Both_Keys_and_Values_of_Python_Dictionaries
+    # loop through dictionary to gather candidate and vote information. Items method allows me to return a list in tuple pairs, use formula within iteration to get percentage. https://tutorialdeep.com/knowhow/loop-through-dictionary-elements-python/#Print_Both_Keys_and_Values_of_Python_Dictionaries
     # get to 3 decimal places - https://www.codespeedy.com/print-floats-to-a-specific-number-of-decimal-points-in-python/
     for candidate, vote in candidates.items():
         print(f"{candidate}: {vote/totalvotes*100:.3f}% ({vote})")
         winner = max(candidates)
-
+        
     print("---------------------------")
     print ("Winner: " + str(winner))
     # The winner of the election based on popular vote.

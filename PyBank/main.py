@@ -43,7 +43,7 @@ with open(budget_data) as csvfile:
     # https://www.tutorialspoint.com/python/tuple_max.htm#:~:text=Python%20tuple%20method%20max%20%28%29%20returns%20the,elements%20from%20the%20tuple%20with%20maximum%20value.    
     ziplist = list(zip(date,profitloss))
     # print(ziplist) not producing correct date/value??
-    # https://stackoverflow.com/questions/13039192/max-second-element-in-tuples-python
+    # https://stackoverflow.com/questions/13039192/max-second-element-in-tuples-python tutor helped with this one based on where my code was
     greatestincrease = max(ziplist, key =lambda x:x[1])
     greatestdecrease = min(ziplist,key =lambda x:x[1])
        

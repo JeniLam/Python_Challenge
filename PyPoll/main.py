@@ -30,7 +30,7 @@ with open(election_data) as csvfile:
         # The total number of votes cast taken from pyBank portion of homework
         totalvotes +=1
     #Begin print output
-    print(candidates)
+    # print(candidates)
     print("Election Results")
     print("---------------------------")
     print("Total Votes: " + str(totalvotes))
@@ -42,17 +42,8 @@ with open(election_data) as csvfile:
         print(f"{candidate}: {vote/totalvotes*100:.3f}% ({vote})")         
     print("---------------------------")
 
-    # A complete list of candidates who received votes
-    # The percentage of votes each candidate won
-    # The total number of votes each candidate won
     # The winner of the election based on popular vote.
 
-
-
-# #candidate dictionary goes here
-# print("---------------------------")
-# print("Winner: ")
-# print("---------------------------")
 
 PyPoll = output_path = os.path.join("Analysis", "PyPoll.txt")
 
@@ -60,4 +51,7 @@ with open(PyPoll,'w') as file:
     file.write("Election Results\n")
     file.write("---------------------\n")
     file.write(f"Total Votes:  {totalvotes}\n")
+    file.write("---------------------\n")
+    for candidate, vote in candidates.items():
+        file.write(f"{candidate}: {vote/totalvotes*100:.3f}% ({vote})\n") 
     file.write("---------------------\n")
